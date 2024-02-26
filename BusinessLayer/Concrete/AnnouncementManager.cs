@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public Announcement TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _announcementDal.GetById(id);
         }
     }
 }

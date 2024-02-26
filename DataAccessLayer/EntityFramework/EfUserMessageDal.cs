@@ -17,7 +17,7 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var c = new Context())
             {
-                return c.UserMessages.Include(x => x.User).ToList();
+                return c.UserMessages.Include(x => x.UserWriter).ToList();
             }
         }
     }

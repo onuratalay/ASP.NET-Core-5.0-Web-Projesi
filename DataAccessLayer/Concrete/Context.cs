@@ -14,7 +14,7 @@ namespace DataAccessLayer.Concrete
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=ACER-NITRO-5\SQLEXPRESS01;Database=CoreProjeDBMY;Integrated Security=true");
+                @"Server=ACER-NITRO-5\SQLEXPRESS01;Database=PortfolyoSitesi;Integrated Security=true");
         }
 
         public DbSet<About> Abouts { get; set; }
@@ -27,10 +27,9 @@ namespace DataAccessLayer.Concrete
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserWriter> UserWriters { get; set; }
         public DbSet<UserMessage> UserMessages { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
-        public DbSet<TestVol1> TestVol1s { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
     }
 }

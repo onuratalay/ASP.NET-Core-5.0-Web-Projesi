@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class User
+    public class UserWriter
     {
         [Key]
-        public int UserId { get; set; }
+        public int UserWriterId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Mail { get; set; }

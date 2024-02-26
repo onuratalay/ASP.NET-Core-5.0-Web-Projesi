@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace CoreProje.Areas.User.Controllers
 {
     [Area("User")]
+    [Route("User/[controller]/[action]")]
     public class RegisterController : Controller
     {
         private readonly UserManager<DefaultUser> _userManager;

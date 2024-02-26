@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreProje.Areas.User.Controllers
 {
     [Area("User")]
+    [Route("User/[controller]/[action]")]
     public class LoginController : Controller
     {
         private readonly SignInManager<DefaultUser> _signInManager;
@@ -38,6 +39,12 @@ namespace CoreProje.Areas.User.Controllers
                 }
             }
             return View();
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
         }
     }
 }
