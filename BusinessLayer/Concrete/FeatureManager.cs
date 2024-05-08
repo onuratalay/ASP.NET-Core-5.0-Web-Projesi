@@ -41,5 +41,10 @@ namespace BusinessLayer.Concrete
         {
             return _featureDal.GetById(id);
         }
+
+        public List<Feature> GetByFilter()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

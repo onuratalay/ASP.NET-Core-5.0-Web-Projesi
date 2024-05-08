@@ -31,11 +31,11 @@ namespace CoreProje.Areas.User.Controllers
                 var result = await _signInManager.PasswordSignInAsync(p.Username, p.Password, true, true);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Default");
+                    return RedirectToAction("Index", "Dashboard");
                 }
                 else
                 {
-                    ModelState.AddModelError("","Hatalı kullanıcı adı veya şifre!");
+                    ModelState.AddModelError("", "Hatalı kullanıcı adı veya şifre!");
                 }
             }
             return View();

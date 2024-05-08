@@ -27,7 +27,7 @@ namespace CoreProje.Areas.User.Controllers
             string api = "881071e58bd1e7b46dd9d7986131bcac";
 
             string connection =
-                "https://api.openweathermap.org/data/2.5/weather?q=Sinop&mode=xml&lang=tr&units=metric&appid=" + api;
+                "https://api.openweathermap.org/data/2.5/weather?q=Kayseri&mode=xml&lang=tr&units=metric&appid=" + api;
 
             XDocument document = XDocument.Load(connection);
             ViewBag.w = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
@@ -35,9 +35,9 @@ namespace CoreProje.Areas.User.Controllers
 
             //STATISTICS
             Context c = new Context();
-            ViewBag.v1 = 0;
+            ViewBag.v1 = c.WriterMessages.Where(x=>x.Receiver == values.UserName).Count();
             ViewBag.v2 = c.Announcements.Count();
-            ViewBag.v3 = 0;
+            ViewBag.v3 = c.Users.Count();
             ViewBag.v4 = c.Skills.Count();
 
             return View();

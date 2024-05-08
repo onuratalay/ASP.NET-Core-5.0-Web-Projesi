@@ -42,5 +42,10 @@ namespace BusinessLayer.Concrete
         {
             return _experienceDal.GetById(id);
         }
+
+        public List<Experience> GetByFilter()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

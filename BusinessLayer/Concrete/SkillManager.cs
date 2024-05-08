@@ -41,5 +41,10 @@ namespace BusinessLayer.Concrete
         {
             return _skillDal.GetById(id);
         }
+
+        public List<Skill> GetByFilter()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

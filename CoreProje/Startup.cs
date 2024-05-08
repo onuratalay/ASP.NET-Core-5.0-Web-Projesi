@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoreProje
 {
@@ -29,6 +30,8 @@ namespace CoreProje
             services.AddIdentity<DefaultUser, UserRole>().AddEntityFrameworkStores<Context>();
             services.AddDbContext<Context>();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,16 +56,14 @@ namespace CoreProje
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Default}/{action=Index}/{id?}"
                 );
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    );
             });
         }
     }
