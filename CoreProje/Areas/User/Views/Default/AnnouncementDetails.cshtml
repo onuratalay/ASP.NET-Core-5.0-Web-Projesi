@@ -9,8 +9,13 @@
 
 <form class="form-group">
     @Html.Label("ID")
-    @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.Id, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.Label("Başlık")
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @readonly = "readonly" })
     <br />
     @Html.Label("İçerik")
-    @Html.TextAreaFor(x=>x.Content,10,3,new {@class="form-control"})
+    @Html.TextAreaFor(x=>x.Content,10,3,new {@class="form-control", @readonly = "readonly"})
+    <br />
+    <a asp-action="Index" class="btn btn-sm btn-inverse-info">Geri Dön</a>
 </form>

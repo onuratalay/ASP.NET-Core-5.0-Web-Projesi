@@ -6,15 +6,13 @@
     Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col">
-        <div class="card bg-default shadow">
-            <div class="card-header bg-transparent border-0">
-                <h3 class="text-white mb-0">Projelerim</h3>
-            </div>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Projeler</h4>
             <div class="table-responsive">
-                <table class="table align-items-center table-dark table-flush">
-                    <thead class="thead-dark">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
                     <tr>
                         <th scope="col" class="sort" data-sort="name">Proje</th>
                         <th scope="col" class="sort" data-sort="budget">Ücret</th>
@@ -58,19 +56,18 @@
                                 </div>
                             </td>
                             <td>
-                                    <a href="/Portfolio/DeletePortfolio/@item.PortfolioId" class="btn btn-outline-danger btn-rounded btn-md" id="DeleteBtn" onclick="return confirm('Silmek istediğinize emin misiniz?');"><i class="ni ni-fat-remove"></i> Sil</a>
+                                <a href="/Portfolio/DeletePortfolio/@item.PortfolioId" class="btn btn-outline-danger btn-rounded btn-md" id="DeleteBtn" onclick="return confirm('Silmek istediğinize emin misiniz?');"><i class="ni ni-fat-remove"></i> Sil</a>
                             </td>
                             <td>
-                                    <a href="/Portfolio/EditPortfolio/@item.PortfolioId" class="btn btn-outline-warning btn-rounded btn-md" id="EditBtn">Düzenle</a>
+                                <a href="/Portfolio/EditPortfolio/@item.PortfolioId" class="btn btn-outline-warning btn-rounded btn-md" id="EditBtn">Düzenle</a>
                             </td>
                         </tr>
                     }
                     </tbody>
                 </table>
+                <br />
+                <a href="/Portfolio/AddPortfolio/" class="btn btn-success">Proje Ekle</a>
             </div>
         </div>
-        <br/>
-        <a href="/Portfolio/AddPortfolio/" class="btn btn-success">Proje Ekle</a>
     </div>
 </div>
-

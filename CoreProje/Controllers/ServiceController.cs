@@ -1,19 +1,19 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreProje.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class ServiceController : Controller
     {
         private ServiceManager _serviceManager = new ServiceManager(new EfServiceDal());
 
         public IActionResult Index()
         {
-            ViewBag.v1 = "Düzenleme";
-            ViewBag.v2 = "Hizmetler";
-            ViewBag.v3 = "Hizmetler Listesi";
             var values = _serviceManager.TGetList();
             return View(values);
         }
@@ -21,9 +21,6 @@ namespace CoreProje.Controllers
         [HttpGet]
         public IActionResult AddService()
         {
-            ViewBag.v1 = "Hizmet Ekle";
-            ViewBag.v2 = "Hizmetler";
-            ViewBag.v3 = "Hizmet Ekle";
             return View();
         }
 
@@ -44,9 +41,6 @@ namespace CoreProje.Controllers
         [HttpGet]
         public IActionResult EditService(int id)
         {
-            ViewBag.v1 = "Hizmet Güncelle";
-            ViewBag.v2 = "Hizmetler";
-            ViewBag.v3 = "Hizmet Güncelle";
             var values = _serviceManager.TGetById(id);
             return View(values);
         }

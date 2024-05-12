@@ -4,23 +4,33 @@
     ViewData["Title"] = "EditService";
     Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
-
-<div class="card-header border-0">
-    <h3 class="mb-0">Hizmet Düzenle</h3>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-description">Hizmet Düzenle</p>
+            <form class="forms-sample">
+                @using (Html.BeginForm("EditService", "Service", FormMethod.Post))
+                {
+                    @Html.Label("ID")
+                    @Html.TextBoxFor(x => x.ServiceId, new { @class = "form-control", @id = "notClickable" })
+                    <br/>
+                    @Html.Label("Hizmet Başlığı")
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    <br />
+                    <label>Resim Yolu</label>
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                    <br />
+                    <button class="btn btn-primary mr-2">Kaydet</button>
+                    <button type="button" class="btn btn-dark" onclick="window.history.back();">İptal Et</button>
+                }
+            </form>
+        </div>
+    </div>
 </div>
-<br />
-<br />
-@using (Html.BeginForm("EditService", "Service", FormMethod.Post))
-{
-    @Html.HiddenFor(x=>x.ServiceId)
-    @Html.Label("Hizmet Başlığı")
-    @Html.TextBoxFor(x=>x.Title,new {@class="form-control"})
-    <br />
-    <label>Resim Yolu</label>
-    @Html.TextBoxFor(x=>x.ImageUrl,new {@class="form-control"})
-    <br />
-    <button class="btn btn-outline-primary">Güncelle</button>
-}
 
-
-
+<script>
+    var dateTextBox = document.getElementById("notClickable");
+    dateTextBox.addEventListener("mousedown", function (event) {
+        event.preventDefault(); // Tıklamayı engelle
+    });
+</script>

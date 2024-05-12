@@ -1,18 +1,18 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreProje.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class SkillController : Controller
     {
         private SkillManager manager = new SkillManager(new EfSkillDal());
         public IActionResult Index()
         {
-            ViewBag.v1 = "Yetenek Listesi";
-            ViewBag.v2 = "Yetenekler";
-            ViewBag.v3 = "Yetenek Listesi";
             var values = manager.TGetList();
             return View(values);
         }
@@ -20,9 +20,6 @@ namespace CoreProje.Controllers
         [HttpGet]
         public IActionResult AddSkill()
         {
-            ViewBag.v1 = "Yetenek Ekle";
-            ViewBag.v2 = "Yetenekler";
-            ViewBag.v3 = "Yetenek Ekle";
             return View();
         }
 
@@ -43,9 +40,6 @@ namespace CoreProje.Controllers
         [HttpGet]
         public IActionResult EditSkill(int id)
         {
-            ViewBag.v1 = "Yetenek Güncelle";
-            ViewBag.v2 = "Yetenekler";
-            ViewBag.v3 = "Yetenek Güncelle";
             var values = manager.TGetById(id);
             return View(values);
         }

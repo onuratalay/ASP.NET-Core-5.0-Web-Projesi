@@ -10,7 +10,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace CoreProje
 {
@@ -29,8 +32,33 @@ namespace CoreProje
             services.AddControllersWithViews();
             services.AddIdentity<DefaultUser, UserRole>().AddEntityFrameworkStores<Context>();
             services.AddDbContext<Context>();
-        }
 
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            services.AddMvc();
+
+            //services.AddAuthentication(
+            //        CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(x =>
+            //    {
+            //        x.LoginPath = "/AdminLogin/Index/";
+            //    });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+
+                options.AccessDeniedPath = "/ErrorPage/Index/";
+                options.LoginPath = "/User/Login/Index/";
+            });
+        }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,74 @@
+﻿@model EntityLayer.Concrete.WriterMessage
+
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+@{
+    string action = "ReceiverMessageList";
+    if (ViewData["Receiver"].ToString() != "admin")
+    {
+        action = "SenderMessageList";
+    }
+
+    string title = "Gelen Mesaj Detay Sayfası";
+    if (ViewData["Receiver"].ToString() != "admin")
+    {
+        title = "Giden Mesaj Detay Sayfası";
+    }
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-description">@title</p>
+            <form class="forms-sample">
+                <div class="form-group">
+                    <label>ID</label>
+                    @Html.TextBoxFor(x => x.WriterMessageId, new { @class = "form-control" })
+                </div>
+@*                 <div class="form-group">
+                    <label>Gönderen Kullanıcı Adı</label>
+                    @Html.TextBoxFor(x => x.Sender, new { @class = "form-control" })
+                </div> *@
+                <div class="form-group">
+                    <label>Gönderici İsim</label>
+                    @Html.TextBoxFor(x => x.SenderName, new { @class = "form-control" })
+                </div>
+@*                 <div class="form-group">
+                    <label>Alıcı Kullanıcı Adı</label>
+                    @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+                </div> *@
+                <div class="form-group">
+                    <label>Alıcı İsim</label>
+                    @Html.TextBoxFor(x => x.ReceiverName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Konu</label>
+                    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Mesaj İçeriği</label>
+                    @Html.TextAreaFor(x => x.MessageContent, 6, 3, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Tarih</label>
+                    <input type="text" class="form-control" value="@Model.Date.ToString("dd MMMM yyyy HH:mm")">
+                </div>
+                <a asp-action="@action" class="btn btn-secondary">Geri Dön</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Girdi kutularının tıklanmasını engellemek için
+    var inputs = document.querySelectorAll("input[type='text'], textarea");
+    inputs.forEach(function (input) {
+        input.addEventListener("mousedown", function (event) {
+            event.preventDefault(); // Tıklanmayı engelle
+        });
+    });
+</script>

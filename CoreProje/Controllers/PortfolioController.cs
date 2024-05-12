@@ -4,19 +4,19 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreProje.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class PortfolioController : Controller
     {
         private PortfolioManager manager = new PortfolioManager(new EfPortfolioDal());
 
         public IActionResult Index()
         {
-            ViewBag.v1 = "Proje Listesi";
-            ViewBag.v2 = "Projeler";
-            ViewBag.v3 = "Proje Listesi";
             var values = manager.TGetList();
             return View(values);
         }
@@ -24,9 +24,6 @@ namespace CoreProje.Controllers
         [HttpGet]
         public IActionResult AddPortfolio()
         {
-            ViewBag.v1 = "Proje Ekle";
-            ViewBag.v2 = "Projeler";
-            ViewBag.v3 = "Proje Ekle";
             return View();
         }
 
@@ -55,9 +52,6 @@ namespace CoreProje.Controllers
         [HttpGet]
         public IActionResult EditPortfolio(int id)
         {
-            ViewBag.v1 = "Proje Güncelle";
-            ViewBag.v2 = "Projeler";
-            ViewBag.v3 = "Proje Güncelle";
             var values = manager.TGetById(id);
             return View(values);
         }

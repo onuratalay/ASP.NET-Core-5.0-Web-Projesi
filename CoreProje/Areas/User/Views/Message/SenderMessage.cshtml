@@ -18,7 +18,7 @@
                         <th>Konu</th>
                         <th>Alıcı</th>
                         <th>Tarih</th>
-                        <th>Detay</th>
+                        <th>Mesajı Gör</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,7 +29,7 @@
                             <td>@item.Subject</td>
                             <td>@item.Receiver</td>
                             <td>@(((DateTime)item.Date).ToString("dd-MMM-yyyy"))</td>
-                            <td><a href="/User/Message/ReceiverMessageDetails/@item.WriterMessageId" class="btn btn-outline-dark">Mesajı Gör</a></td>
+                            <td><a href="/User/Message/SenderMessageDetails/@item.WriterMessageId" class="btn btn-outline-dark">Detay</a></td>
                         </tr>
                     }
                     </tbody>

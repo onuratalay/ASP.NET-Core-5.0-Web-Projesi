@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
@@ -42,15 +44,15 @@ namespace CoreProje.Areas.User.Controllers
             return View(messageList);
         }
 
-        [Route("MessageDetails/{id}")]
-        public IActionResult MessageDetails(int id)
+        [Route("ReceiverMessageDetails/{id}")]
+        public IActionResult ReceiverMessageDetails(int id)
         {
             WriterMessage message = writerMessageManager.TGetById(id);
             return View(message);
         }
 
-        [Route("ReceiverMessageDetails/{id}")]
-        public IActionResult ReceiverMessageDetails(int id)
+        [Route("SenderMessageDetails/{id}")]
+        public IActionResult SenderMessageDetails(int id)
         {
             WriterMessage message = writerMessageManager.TGetById(id);
             return View(message);
@@ -71,10 +73,12 @@ namespace CoreProje.Areas.User.Controllers
         {
             var receiver = await _userManager.FindByNameAsync(p.Receiver);
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
+
             p.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             p.Sender = values.UserName;
             p.SenderName = values.Name + " " + values.Surname;
             p.ReceiverName = receiver.Name + " " + receiver.Surname;
+
             writerMessageManager.TAdd(p);
             return RedirectToAction("SenderMessage");
         }

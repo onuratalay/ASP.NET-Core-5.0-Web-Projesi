@@ -7,16 +7,24 @@
 
 @using (Html.BeginForm("Index", "Feature", FormMethod.Post))
 {
-    @Html.HiddenFor(x=>x.FeatureId)
-    <label>Başlık</label>
-    @Html.TextBoxFor(x=>x.Header,new {@class="form-control"})
-    <br />
-    <label>Ad Soyad</label>
-    @Html.TextBoxFor(x=>x.Name,new {@class="form-control"})
-    <br />
-    <label>Meslek/Görev/Rol</label>
-    @Html.TextBoxFor(x=>x.Title,new {@class="form-control"})
-    <br />
-    <button class="btn btn-outline-primary">Güncelle</button>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample">
+                    @Html.HiddenFor(x => x.FeatureId)
+                    <label>Başlık</label>
+                    @Html.TextBoxFor(x => x.Header, new { @class = "form-control" })
+                    <br />
+                    <label>Ad Soyad</label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    <br />
+                    <label>Meslek/Görev/Rol</label>
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    <br />
+                    <button class="btn btn-primary mr-2">Kaydet</button>
+                </form>
+            </div>
+        </div>
+    </div>
 }
 

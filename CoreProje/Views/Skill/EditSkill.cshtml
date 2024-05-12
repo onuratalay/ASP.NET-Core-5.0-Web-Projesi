@@ -9,11 +9,11 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <p class="card-description">Yetenek Düzenleme Paneli</p>
+                <p class="card-description">Yetenek Düzenle</p>
                 <form class="forms-sample">
                     <div class="form-group">
                         <label>ID</label>
-                        @Html.TextBoxFor(x=>x.SkillId,new {@class="form-control"})
+                        @Html.TextBoxFor(x=>x.SkillId,new {@class="form-control", @id = "notClickable"})
                     </div><div class="form-group">
                         <label>Başlık</label>
                         @Html.TextBoxFor(x=>x.Title,new {@class="form-control"})
@@ -23,12 +23,16 @@
                         @Html.TextBoxFor(x=>x.Value,new {@class="form-control"})
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
-                    <button class="btn btn-dark">İptal Et</button>
+                    <button type="button" class="btn btn-dark" onclick="window.history.back();">İptal Et</button>
                 </form>
             </div>
         </div>
     </div>
-
 }
 
-
+<script>
+    var dateTextBox = document.getElementById("notClickable");
+    dateTextBox.addEventListener("mousedown", function (event) {
+        event.preventDefault(); // Tıklamayı engelle
+    });
+</script>

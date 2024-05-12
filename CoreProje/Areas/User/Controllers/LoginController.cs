@@ -1,11 +1,13 @@
 ﻿using System.Threading.Tasks;
 using CoreProje.Areas.User.Models;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreProje.Areas.User.Controllers
 {
+    [AllowAnonymous]
     [Area("User")]
     [Route("User/[controller]/[action]")]
     public class LoginController : Controller
