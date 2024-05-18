@@ -1,8 +1,48 @@
-﻿
+﻿@* @using EntityLayer.Concrete
+@model List<DefaultUser>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="col-md-6">
+    <div class="p-2">
+        <button type="button" id="btngetlistall" class="btn btn-md btn-outline-primary">Verileri Getir</button>
+        <button type="button" id="btnadddefaultuser" class="btn btn-md btn-outline-info">Kaydet</button>
+    </div>
+</div>
 
+<h4 class="text-center">Kullanıcı Listesi</h4>
+<div class="p-2" id="listuser">
+    Veri alanı
+</div>
+
+<br />
+
+<div class="col-md-12">
+    <input type="text" class="form-control" id="inpname" placeholder="Ad"/>
+    <br />
+    <input type="text" class="form-control" id="inpsurame" placeholder="Soyad"/>
+    <br />
+    <input type="text" class="form-control" id="inpusername" placeholder="Kullanıcı Adı"/>
+    <br />
+    <input type="text" class="form-control" id="inpmail" placeholder="Mail Adresi"/>
+</div>
+
+
+
+@section Scripts
+{
+    <script>
+        $("#getlistall").click(function() {
+            $.get("/DefaultUser/ListDefaultUser", function(users) {
+                console.log(users);
+            });
+        });
+    </script>
+}
+
+<script 
+    src="~/lib/jquery/dist/jquery.js">
+</script> *@

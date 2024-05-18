@@ -1,0 +1,145 @@
+﻿@using EntityLayer.Concrete
+@model List<Message>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="col-md-6">
+    <div class="p-2">
+        <button type="button" id="btngetlistall" class="btn btn-md btn-outline-info">Verileri Getir</button>
+        <button type="button" id="btnadd" class="btn btn-md btn-outline-primary">Kaydet</button>
+        <button type="button" id="btngetbyid" class="btn btn-md btn-outline-warning">ID'ye Göre Getir</button>
+        <button type="button" id="btndelete" class="btn btn-md btn-outline-danger">Sil</button>
+        <button type="button" id="btnupdate" class="btn btn-md btn-outline-success">Güncelle</button>
+    </div>
+</div>
+
+<h4 class="text-center">İletişim Kutusu</h4>
+<div class="p-2" id="listmessage">
+    @* Veri alanı *@
+</div>
+
+<br />
+
+<div class="p-2" id="listgetbyidmessage">
+    @* ID'ye göre veri alanı *@
+</div>
+
+<br />
+
+<div class="col-md-12">
+    <h4>Yeni İletişim Mesajı</h4>
+    <input type="text" class="form-control" id="inpname" placeholder="İsim"/>
+    <br/>
+    <input type="text" class="form-control" id="inpmail" placeholder="Mail Adresi"/>
+    <br/>
+    <input type="text" class="form-control" id="inpcontent" placeholder="Mesaj"/>
+    <br/>
+    <input type="text" class="form-control" id="inpdate" placeholder="Tarih"/>
+</div>
+
+<br />
+<br />
+
+<div class="col-md-12">
+    <h4>ID'ye Göre İletişim Mesajı Getir</h4>
+    <input type="text" class="form-control" id="inpid" placeholder="ID" />
+</div>
+
+<br />
+<br />
+
+<div class="col-md-12">
+    <h4>İletişim Mesajı Sil</h4>
+    <input type="text" class="form-control" id="inpdelid" placeholder="ID" />
+</div>
+
+@section Scripts
+{
+    <script>
+        $("#btngetlistall").click(function() {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Contact2/ListContact/",
+
+                success: function(func) {
+                    let values = jQuery.parseJSON(func);
+                    console.log(values);
+
+                    let htmlst = "<table class=table table-bordered><tr><th>ID</th><th>İsim</th><th>Mail Adresi</th><th>Tarih</th></tr>";
+                    $.each(values,
+                        (index, value) => {
+                            htmlst += `
+                                            <tr>
+                                                <td>${value.MessageId}</td>
+                                                <td>${value.Name}</td>
+                                                <td>${value.Mail}</td>
+                                                <td>${value.Date}</td>
+                                            </tr>`
+                        });
+                    htmlst += "</table>";
+                    $("#listmessage").html(htmlst);
+                }
+            });
+        });
+
+        $("#btnadd").click(function() {
+            let values = {
+                Name: $("#inpname").val(),
+                Mail: $("#inpmail").val(),
+                Content: $("#inpcontent").val(),
+                Date: $("#inpdate").val(),
+            };
+
+            $.ajax({
+                type: "Post",
+                url: "/Contact2/AddContact/",
+                data: values,
+                success: function(func1) {
+                    let result = jQuery.parseJSON(func1);
+                    alert("Ekleme işlemi başarılı!");
+                }
+            });
+        });
+
+        $("#btngetbyid").click(x => {
+            let id = $("#inpid").val();
+
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Contact2/GetById/",
+                data: { MessageId: id },
+                success: function(func2) {
+
+                    let result = jQuery.parseJSON(func2);
+
+                    let htmlstr = `<table class=table table-hover> <tr> <th> ID </th> <td> ${result.MessageId}</td></tr> <tr> <th> İsim </th> <td> ${result.Name}</td></tr> <tr> <th> Mail </th> <td> ${result.Mail} </td> </tr> <tr> <th> Mesaj </th> <td> ${result.Content} </td> </tr> <tr> <th> Tarih </th> <td> ${result.Date} </td> </tr> </table>`;
+                    $("#listgetbyidmessage").html(htmlstr);
+                }
+            });
+        });
+
+        $("#btndelete").click(x => {
+            let id = $("#inpdelid").val();
+            $.ajax({
+                url: "/Contact2/DeleteContact/" + id,
+                type: "Post",
+                contentType: "application/json",
+                dataType: "json",
+                success: function(func3) {
+                    loadData();
+                }
+            });
+        });
+    </script>
+}
+
+<script src="~/lib/jquery/dist/jquery.js">
+</script>
+

@@ -53,7 +53,7 @@ namespace CoreProje
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
 
                 options.AccessDeniedPath = "/ErrorPage/Index/";
                 options.LoginPath = "/User/Login/Index/";
@@ -74,6 +74,8 @@ namespace CoreProje
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404/");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
