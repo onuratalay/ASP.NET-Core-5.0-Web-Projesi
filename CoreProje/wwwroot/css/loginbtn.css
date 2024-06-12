@@ -1,0 +1,28 @@
+﻿body {
+}
+
+.giris-yap-btn {
+    background-color: #f7e05f; /* Sarı renk */
+    color: #494C55; /* Metin rengi */
+    padding: 5px 15px; /* İç boşluk */
+    border-radius: 20px; /* Yuvarlak köşeler */
+    border: 2px solid #f7e05f; /* Kenar rengi */
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Geçiş animasyonları */
+    text-decoration: none; /* Alt çizgi kaldırma */
+    display: inline-block; /* Butonu blok elemanı yapma */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 1.5px;
+}
+
+    .giris-yap-btn:hover {
+        background-color: #494C55; /* Hover sırasında arka plan rengi */
+        color: #f7e05f; /* Hover sırasında metin rengi */
+        border-color: #f7e05f; /* Kenar rengi */
+        transform: scale(1.05); /* Hover sırasında butonun hafifçe büyümesi */
+    }

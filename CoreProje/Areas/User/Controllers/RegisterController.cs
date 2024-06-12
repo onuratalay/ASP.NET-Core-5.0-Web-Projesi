@@ -3,9 +3,11 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreProje.Areas.User.Controllers
 {
+    [AllowAnonymous]
     [Area("User")]
     [Route("User/[controller]/[action]")]
     public class RegisterController : Controller

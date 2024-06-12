@@ -16,7 +16,7 @@
                                 <th> URL </th>
                                 <th> Fiyat </th>
                                 <th> Tamamlanma % </th>
-                                <th> Durum </th>
+                                <th> Daha Fazla </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +34,7 @@
                                     <td> @item.Price </td>
                                     <td> @item.Value </td>
                                     <td>
-                                        <div class="badge badge-outline-success">Approved</div>
+                                        <a href="/Portfolio/EditPortfolio/@item.PortfolioId/" class="btn btn-outline-warning">Detay</a>
                                     </td>
                                 </tr>
                             }

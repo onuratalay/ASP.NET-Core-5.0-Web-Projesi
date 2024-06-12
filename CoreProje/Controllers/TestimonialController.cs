@@ -39,5 +39,19 @@ namespace CoreProje.Controllers
             _testimonialManager.TUpdate(testimonial);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult AddTestimonial()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddTestimonial(Testimonial testimonial)
+        {
+            _testimonialManager.TAdd(testimonial);
+            return RedirectToAction("Index");
+        }
+
     }
 }

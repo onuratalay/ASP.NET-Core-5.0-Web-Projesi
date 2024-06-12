@@ -14,29 +14,31 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-light">
-                            <tr>
-                                <th> # </th>
-                                <th> Ad Soyad </th>
-                                <th> Firma/Şirket </th>
-                                <th> Sil </th>
-                                <th> Düzenle</th>
-                            </tr>
+                        <tr>
+                            <th> # </th>
+                            <th> Ad Soyad </th>
+                            <th> Firma/Şirket </th>
+                            <th> Sil </th>
+                            <th> Düzenle</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        <img src="@item.ImageUrl" alt="image" />
-                                    </td>
-                                    <td> @item.ClientName </td>
-                                    <td> @item.Company </td>
-                                    <td> <a href="/Testimonial/DeleteTestimonial/@item.TestimonialId" class="btn btn-outline-danger btn-rounded btn-md">Sil</a></td>
-                                    <td> <a href="/Testimonial/EditTestimonial/@item.TestimonialId" class="btn btn-outline-warning btn-rounded btn-md">Düzenle</a></td>
-                                </tr>
-                            }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@item.ImageUrl" alt="image" />
+                                </td>
+                                <td> @item.ClientName </td>
+                                <td> @item.Company </td>
+                                <td> <a href="/Testimonial/DeleteTestimonial/@item.TestimonialId" class="btn btn-outline-danger btn-rounded btn-md">Sil</a></td>
+                                <td> <a href="/Testimonial/EditTestimonial/@item.TestimonialId" class="btn btn-outline-warning btn-rounded btn-md">Düzenle</a></td>
+                            </tr>
+                        }
                         </tbody>
                     </table>
+                    <br />
+                    <a href="/Testimonial/AddTestimonial/" class="btn btn-success">Referans Ekle</a>
                 </div>
             </div>
         </div>

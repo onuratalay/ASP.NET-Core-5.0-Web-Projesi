@@ -6,7 +6,8 @@
         <ul class="nav justify-content-center">
             @foreach (var item in Model)
             {
-                <li class="nav-item"><a class="nav-link" href="@item.Url" title="@item.Name"><i class="@item.Icon"></i><span class="menu-title sr-only">@item.Name</span></a></li>
+                var iconClass = item.Icon.Insert(3, " ");
+                <li class="nav-item"><a class="nav-link" href="@item.Url" title="@item.Name"><i class="@iconClass"></i><span class="menu-title sr-only">@item.Name</span></a></li>
             }
         </ul>
     </nav>

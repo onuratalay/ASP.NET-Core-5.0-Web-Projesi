@@ -13,10 +13,12 @@ namespace CoreProje.Areas.User.Controllers
     public class LoginController : Controller
     {
         private readonly SignInManager<DefaultUser> _signInManager;
+        private readonly UserManager<DefaultUser> _userManager;
 
-        public LoginController(SignInManager<DefaultUser> signInManager)
+        public LoginController(SignInManager<DefaultUser> signInManager, UserManager<DefaultUser> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -31,9 +33,25 @@ namespace CoreProje.Areas.User.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(p.Username, p.Password, true, true);
+
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Dashboard");
+                    var user = await _userManager.FindByNameAsync(p.Username);
+
+                    if (user != null)
+                    {
+                        var roles = await _userManager.GetRolesAsync(user);
+
+                        if (roles.Contains("Admin"))
+                        {
+                            return RedirectToAction("Index", "Dashboard", new { area = "" });
+                        }
+
+                        else if (roles.Contains("User"))
+                        {
+                            return RedirectToAction("Index", "Dashboard", new { area = "User" });
+                        }
+                    }
                 }
                 else
                 {

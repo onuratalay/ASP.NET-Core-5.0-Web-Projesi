@@ -29,7 +29,7 @@
                                 <td>@item.MessageId</td>
                                 <td>@item.Name</td>
                                 <td>@item.Mail</td>
-                                <td>@item.Date</td>
+                                <td>@item.Date.ToString("dd MMMM yyyy")</td>
                                 <td><a href="/Contact/DeleteContact/@item.MessageId" class="btn btn-outline-danger btn-rounded btn-md">Sil</a></td>
                                 <td><a href="/Contact/ContactDetails/@item.MessageId" class="btn btn-outline-info btn-rounded btn-md">Detay</a></td>
                             </tr>
